@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Allo Bank - Full Bank List</title>
+    <style>
+   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&family=Quicksand:wght@500;600;700&display=swap');
+
+
+        /* CSS DASAR */
+        body { 
+    margin: 0; 
+    font-family: 'Inter', 'Poppins', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; 
+    background-color: #F8F9FA; 
+    color: #333; 
+    -webkit-font-smoothing: antialiased;
+}
+        .page { display: none; min-height: 100vh; width: 100%; background: #F8F9FA; }
+        .page.active { display: block; }
+        
+        /* HEADER HALAMAN 1 */
+.header {  background: linear-gradient(to bottom, #FFC32C , #FFA200); height: 250px; padding: 20px; display: flex; align-items: flex-start; position: relative; box-sizing: border-box; }
+
+.back-btn { font-size: 45px; font-family: 'Quicksand'; font-weight: 300; cursor: pointer; color: #333; width: 30px; line-height: 0.8; display: flex; align-items: center; margin-top: -10px;}
+
+.header-title { flex-grow: 1; font-family: 'Inter',sans-serif; text-align: center; font-weight: 500; font-size: 17px; margin-top: 3px; margin-right: 30px; }
+
+        
+/* KARTU UTAMA */
+.main-card { background: white; margin: -170px auto 0 auto; box-sizing: border-box; width: 90%; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.08); position: relative; z-index: 10; overflow: hidden; }
+    .card-padding { padding: 20px 5px 35px 5px; width: 90%; box-sizing: border-box; margin: auto;}
+    .section-label { font-size: 13px; font-weight: bold; margin-bottom: 20px; display: block; }
+        
+    .menu-item { display: flex; align-items: center; padding: 6px 20px; border: 1px solid #E3E3E3; border-radius: 5px; margin-top: 20px; cursor: pointer; }
+    .menu-icon { width: 32px; height: 32px; margin-right: 20px; border-radius: 3px; object-fit: contain; }
+    .menu-text { flex-grow: 1; font-size: 14px; font-weight: 500; }
+    .arrow-right { color: #333; font-size: 38px; font-weight: 300; font-family: 'Quicksand',sans-serif; margin-left: 5px;}
+        
+.promo-banner { background: linear-gradient(135deg, #FFCC63 , #FFB81C ); padding: 20px; display: flex; align-items: center; gap: 12px; }
+.promo-icon { font-size: 22px !important; flex-shrink: 0; border-radius: 40px; background: #fff; border: 5.5px solid #fff; }
+
+/* Bagian ini yang menyeragamkan teks biasa DAN teks tebal */
+.promo-banner span:not(.promo-icon), 
+.promo-banner b { font-size: 11.5px !important; line-height: 1.4; color: #444; }
+
+        .content-section { background: white; width: 90%; margin: 15px auto; box-sizing: border-box; box-shadow: 0 2px 8px rgba(0,0,0,0.08); border-radius: 8px; padding: 20px; }
+        .section-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
+        .link-text { color: #007AFF; font-size: 12.5px; text-decoration: none; }
+        
+        .circle-plus { width: 40px; height: 40px; background-color: #E8F0FE; border-radius: 50%; display: flex; justify-content: center; align-items: center; color: #007AFF; font-size: 24px; margin-bottom: 8px; cursor: pointer; }
+        .btn-label { font-size: 11px; color: #007AFF; }
+        
+        /* RIWAYAT */
+        .history-item { display: flex; align-items: center; padding: 10px 0; border-bottom: 1px dashed #E6E6E6; }
+        .history-item:last-child { border-bottom: none; }
+        .history-name { font-weight: bold; font-size: 13px; display: block; }
+        .history-bank { font-size: 11px; color: #888; }
+
+/*====HALAMAN 2 PILIH BANK======*/
+        /* HEADER PUTIH */
+   .white-header { background: #fff; height: 70px; display: flex; align-items: center; padding: 0 20px; border-bottom: 1px solid #fff; position: sticky; top: 0; z-index: 100; box-sizing: border-box; }
+        
+        /* INPUT & KEYPAD */
+        
+        .search-container { padding: 20px 20px 25px 20px; background: #fff; position: sticky; top: 70px; z-index: 99; }
+        .search-wrapper { display: flex; align-items: center; background: #fff; border: 1px solid #e0e0e0; border-radius: 30px; padding: 10px 20px; }
+        .search-wrapper input { border: none; outline: none; flex-grow: 1; font-size: 14px; }
+.search-wrapper svg { color: #9e9e9e; width: 19px; height: 19px; flex-shrink: 0; margin-left: 8px; stroke-width: 2; }
+
+        .bank-list { padding: 0 24px; background: #fff; }
+        .bank-item { display: flex; align-items: center; padding: 18px 0; border-bottom: 1px solid #f0f0f0; cursor: pointer; }
+        .bank-logo { width: 50px; height: 40px; object-fit: contain; margin-right: 20px; }
+   
+    /*HALAMAN 3*/
+#page3 {
+background: #fff;    
+}    
+#page3 .section-box { background: rgba(255, 255, 255, 1); padding: 10px 20px 25px 20px; border-bottom: 9px solid #EBEBEB; }
+#page3 .section-label { display: block; font-size: 15px; font-weight: bold; color: #333; margin-bottom: 20px; }
+#page3 .bank-detail-wrapper { display: flex; align-items: center; gap: 15px; }
+#page3 #targetBankLogo { width: 35px; height: 35px; object-fit: contain; padding: 4px; border-radius: 6px; }
+#page3 #targetBankName { font-weight: 600; font-size: 14px; color: #333; }
+
+        /* Info Bank Terpilih */
+#page3 .input-section { padding: 20px; margin-top:10px; background #fff}
+#page3 .field-label { font-size: 13px; font-weight: 500; color: #aaa; margin-bottom: 5px; display: block; }
+        
+#page3 .input-wrapper { position: relative; border-bottom: 1px solid #f9b602; display: flex; align-items: center; }
+#page3 .input-wrapper input { width: 100%; border: none; outline: none; padding: 10px 0; font-size: 25px; font-weight: bold; margin-bottom: 15px; background: transparent; }
+#page3 .fav-star { background: #333; color: #f9b602; width: 22px; height: 28px; margin-bottom: 15px; display: flex; justify-content: center; align-items: center; border-radius: 2px; position: absolute; right: 0; }
+
+/*---HALAMAN 4 INPUT NOMINAL---*/
+#page4 .white-header { background: #fff; padding: 15px; display: flex; align-items: center; border-bottom: 1px solid #fff; }
+#page4 .nominal-box { background: rgba(255, 255, 255, 1); padding: 20px; border-bottom: 8px solid #f8f9fa; }
+#page4 .section-label { font-size: 13px; font-weight: 600; color: #333; display: block; margin-bottom: 10px; }
+#page4 .nominal-box span#finalBankName { font-size: 14px; font-weight: bold; color: #222; }
+#page4 .nominal-box span#finalNoRek { font-size: 14px; color: #888; font-weight: 400; }
+#page4 .nominal-box span#finalRecipientName { font-size: 14px; font-weight: bold; color: #222; display: block; padding-bottom: 5px; }
+#page4 .input-section { padding: 15px 20px 25px 20px; background: #fff; flex-grow: 1; }
+#page4 .field-label { font-size: 14px; color: #999; font-weight: 500; }
+#page4 .nominal-wrapper { display: flex; align-items: center; position: relative; margin-top: 10px; border-bottom: 1px solid #f9b602; padding-bottom: 10px; }
+
+#page4 .currency { position: absolute; left: 0; font-size: 32px; font-weight: bold; transition: 0.3s; z-index: 1; }
+
+#page4 .currency.inactive { color: #ccc; opacity: 0.6; }
+
+#page4 .nominal-wrapper span#displayAmount { font-size: 32px; font-weight: bold; color: #333; position: relative; z-index: 2; 
+    padding-left: 0; /* Awalnya 0 biar kursor di kiri */transition: padding 0.2s;
+}
+
+#page4 .cursor { 
+    width: 2px; 
+    height: 30px; 
+    background: #333; 
+    animation: blink 0.8s infinite; 
+}
+
+@keyframes blink { 0% { opacity: 0; } 50% { opacity: 1; } 100% { opacity: 0; } }
+#page4 .balance-row { display: flex; justify-content: space-between; margin-top: 15px; }
+#page4 .balance-row span { font-size: 15px !important; color: #999; font-weight: 500; }
+#page4 .balance-row span.view-balance { color: #FF9700; font-weight: bold; font-size: 15px !important; cursor: pointer; }
+#page4 .keypad-nominal { display: grid; grid-template-columns: repeat(3, 1fr); background: #fff; padding: 10px; gap: 1px; margin-bottom: 10px; background: #fff; }
+#page4 .key { background: #fff; padding: 20px; text-align: center; font-size: 22px; font-weight: 500; cursor: pointer; transition: 0.2s; }
+#page4 .key:active { background: #eee; }
+
+/* ---BOX DATA SALDO ATAS---*/
+#page5 {
+ background-color: #F3F3F3;  }
+#page5 .konfirmasi-card { background: #FFFFFF; padding: 20px; margin: 15px 15px 0px 15px; border-radius: 5px;
+    box-sizing: border-box; max-width: 500px; }
+
+#page5 .sender-section { display: flex; align-items: center; gap: 15px; }
+#page5 .divider-flow { display: flex; align-items: center; padding: 0 0 6px 11px; }
+
+#page5 .flow-arrow { color: #f9b602; font-size: 20px; font-weight: 400; margin: 0; display: inline-block; animation: moveArrow 1.5s infinite ease-in-out; }
+@keyframes moveArrow { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(8px); } }
+/* Bagian Bawah (Recipient) */
+#page5 .recipient-section { display: flex; align-items: center; gap: 15px; margin-top: 4px; }
+#page5 .profile-img { width: 40px;
+    height: 40px; border-radius: 10%; overflow: hidden; }
+#page5 .profile-img img { width: 35px; height: 35px; object-fit: contain; display: block; border-radius: 5px; margin-left: 5px;}
+#page5 .bank-logo { width: 43px; height: 43px; object-fit: contain; margin: 0;}
+#page5 .account-info {
+    flex-grow: 1; }
+#page5 .recipient-info {
+    flex-grow: 1; }    
+#page5 .name-display{ font-size: 15px; font-family: "Open sans",sans-serif; font-weight: bold; color: #333; display: block; text-transform: uppercase; }
+  #page5 .bank-detail-text { margin: 0; text-transform: uppercase;}
+#page5 span #confBankName {
+ font-size: 13px; font-family: 'Inter',sans-serif; font-weight: 700; color: #333; }
+#page5 span #confRek { font-size: 13px; font-family: "Inter",sans-serif; font-weight: 500; color: #777; }
+
+#page5 span.account-name { margin: 0; font-family: 'Poppins', sans-serif; font-size: 14px; font-weight: 500; color: #002d64; display: block; }
+
+#page5 .account-balance p { margin: 0; font-size: 12px; color: #777; font-weight: 500; font-family: 'Poppins',sans-serif; }
+#page5 .account-balance span { font-weight: 700; font-size: 12px; color: #777; }
+#page5 .arrow-icon { color: #333; font-weight: 300; font-size: 35px; font-family: 'Quicksand',sans-serif; }
+/*--BOX TENGAH---*/
+#page5 .mid-box { margin-top: 50px; position: relative; }
+#page5 .label-mid { position: absolute; top: -25px; left: 20px; font-size: 12px; font-family: 'Poppins',sans-serif; color: #666; font-weight: 600;
+display: block; text-transform: uppercase; z-index: 5; }  
+
+#page5 .mid-card { background: #fff; padding: 15px; margin: 0px 15px 25px 15px; border-radius: 5px;
+    box-sizing: border-box; max-width: 500px; position: relative; z-index: 7; }
+#page5 .conf-Jenis span{ font-size: 15px; font-weight: 700; color: #333; }
+#page5 .conf-Jenis span.promo{ font-size: 15px; font-weight: 700; color: #333; text-decoration: line-through; }
+#page5 .conf-Jenis span.Gratis-hijau{ color: #209A00; }
+/*---BOX RINCIAN TRANSAKSI---*/
+#page5 .box-detail { position: relative; margin-top: 50px; }
+/*card*/
+#page5 .conf-box { background: #fff; padding: 20px; margin: 1px 15px 0px 15px; border-radius: 5px 5px 0 0; box-sizing: border-box; max-width: 500px; border-bottom: 1px dashed #E6E6E6; z-index: 1; position: relative; }
+/*label*/
+#page5 .field-label { position: absolute; top: -25px; left: 20px; font-size: 12px; font-family: 'Poppins',sans-serif; color: #666; font-weight: 600; display: block; text-transform: uppercase; letter-spacing: 0.5px; z-index: 3; }
+/*pembungkus*/
+#page5 .conf-row { display: flex; justify-content: space-between; padding-bottom: 28px; }
+/*isi*/
+#page5 .conf-row span { font-size: 14px; font-family: 'Poppins',sans-serif; font-weight: 500; color: #444; }
+#page5 .conf-row span#confNominal { font-size: 14px; font-family: 'Poppins',sans-serif; }
+#page5 .conf-admin { display: flex; justify-content: space-between; }
+#page5 .conf-admin span { font-size: 13.5px; font-weight: 500; font-family: 'Poppins',sans-serif; text-transform: uppercase; color: #444;
+}
+/*card menempel*/
+#page5 .total-box { background: #fff; padding: 20px; margin: 0px 15px 25px 15px; border-radius: 0 0 5px 5px; box-sizing: border-box; max-width: 500px; z-index: 3; position: relative; }
+/*pembungkus*/
+#page5 .conf-total { display: flex; justify-content: space-between; }
+/*isi*/
+#page5 .conf-total span { font-size: 14px; font-weight: 800; font-family: 'Poppins',sans-serif; color: #333; }
+#page5 .conf-total span#confTotal { font-size: 14px; font-weight: 800; font-family: 'Poppins',sans-serif; color: #333; }
+
+#page5 .btn-lanjut span {font-size: 14px; font-weight: 600; font-family: 'Poppins',sans-serif;}
+#page5 .btn-active span { color: #333; font-size: 14px; font-weight: 600;}
+
+        /* Footer Button */
+.footer-btn-container {padding: 20px; position: absolute; bottom: 0; width: 100%; justify-content: center; text-align: center; background: #FFFFFF; box-sizing: border-box; }
+        
+.btn-lanjut { width: 90%; font-family: 'Poppins',sans-serif; padding: 10px; border: none; border-radius: 50px; font-weight: 600; font-size: 14px; background: #ccc; color: #777; transition: 0.3s; }
+.btn-active { background: #f9b602; color: #333; }
+
+
+        /* GAYA PIN */
+      #page6 { background-color: #1a1a1a; min-height: 100vh; }
+#page6 header { display: flex !important; align-items: center; justify-content: flex-start; padding: 30px 20px 10px 20px; height: 70px; background-color: #1a1a1a; position: relative; margin-bottom: 25px; width: 100%; box-sizing: border-box; }
+#page6 .back-icon { font-size: 40px; color: white; z-index: 10; line-height: 1; }
+#page6 .logo-box { position: absolute; left: 50%; top: 70%; transform: translate(-50%, -50%); width: 100px; display: flex !important; justify-content: center; align-items: center; }
+#page6 .logo-box img { width: 100%; height: auto; display: block !important; }
+#page6 .instruction { text-align: center; font-family: 'Open sans',sans-serif; letter-spacing: 0.5px; color: #FFFFFF; font-size: 13px; font-weight: 600; margin-bottom: 40px; }
+#page6 .pin-display { display: flex; justify-content: center; gap: 17px; }
+#page6 .dot { width: 18px; height: 18px; background-color: #B9B9B9; border-radius: 50%; transition: all 0.2s ease; }
+#page6 .dot.active { background-color: #DEA21A; }
+#page6 .forgot-pin { text-align: center; color: #FF8A2F; font-size: 13.5px; font-family: 'Poppins', sans-serif; font-weight: 700; margin-top: 40px; }
+#page6 .keypad { position: absolute; bottom: 150px; width: 100%; display: grid; grid-template-columns: repeat(3, 1fr); row-gap: 25px; padding: 0 30px; box-sizing: border-box; margin: 1px auto 1px auto; text-align: center; }
+#page6 .keypad { position: absolute; bottom: 150px; width: 100%; display: grid; grid-template-columns: repeat(3, 1fr); justify-items: center; row-gap: 25px; padding: 0 30px; box-sizing: border-box; }
+#page6 .key { color: white; background-color: #EAEAEA4A; border-radius: 50%; font-size: 25px; font-weight: 600; display: flex; justify-content: center; align-items: center; height: 60px; width: 60px; transition: background 0.2s; user-select: none; }
+#page6 .key:active { background-color: rgba(255,255,255,0.1); border-radius: 50%; }
+#page6 .key img { width: 28px; filter: invert(1); }
+
+/* CSS STRUK BARU */
+#page8 { background: #F9A302; position: fixed; top: 0; left: 0; width: 100%; height: 100%; min-height: 100vh; z-index: 9999; overflow-y: auto; display: none;  }
+
+#page8 .container { width: 90%; max-width: 380px; text-align: center; margin: 40px auto; }
+        /* 3. Card Putih dengan Potongan Melengkung */
+#page8 .receipt-card { background: white; border-radius: 8px; padding: 30px 25px 20px 25px; position: relative; }
+#page8 .logo-allo { width: 130px; margin-bottom: 13px; }
+        /* Efek Potongan di Sisi Kiri & Kanan */
+#page8 .receipt-card::before, .receipt-card::after { content: ""; position: absolute;top: 35%; /* Posisi di area garis putus-putus */width: 30px; height: 30px; background: #F9A302; /* Harus sama dengan warna background luar */border-radius: 50%; }
+        #page8 .receipt-card::before { left: -15px; }
+        #page8 .receipt-card::after { right: -15px; }
+
+        /* 4. Animasi Centang Lingkaran Hijau */
+#page8 .success-icon { width: 60px; height: 60px; background: #28a745; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 10px; animation: bounceIn 0.6s ease; }
+#page8 .success-icon svg { width: 35px; fill: white; }
+
+#page8 .status-text { color: #28a745; font-weight: bold; font-size: 18px; margin-bottom: 10px; }
+
+/* 5. Nominal Besar */
+#page8 .amount { font-size: 28px; font-weight: 800; color: #000; margin-bottom: 25px; letter-spacing: 0.5px; }
+#page8 .amount span { font-size: 28px; font-weight: 800; color: #000; letter-spacing: 0.5px;  }
+
+/* 6 & 8. Garis Putus-putus */
+ #page8 .dashed-line { border-top: 1.2px dashed #ccc; margin: 15px 0 5px 0; }
+
+/*timestamp*/
+#page8 .info-row { display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 15px; margin-top: 20px; text-align: left; }
+#page8 .timestamp { font-size: 11px; color: #666;}
+#page8 .value { color: #333; font-weight: 500; font-size: 15px; display: block; }
+/*info penerima*/
+#page8 .info-penerima { text-align: left; margin-bottom: 17px; }             
+#page8 .label { color: #666; margin-bottom: 4px; display: block; font-size: 13px; }
+#page8 .recipient-name { font-size: 15px; font-weight: bold; margin-top: 3px; color: #333; display: block; text-transform: uppercase; }
+#page8 .receipt-Bank { font-size: 13px; font-weight: 500; color: #333; }
+#page8 .recipient-acc { font-size: 13px; color: #777;}
+/*info pengirim*/
+#page8 .info-pengirim { text-align: left; font-size: 14px; margin-bottom: 17px; }
+#page8 .label-pengirim { color: #666; margin-bottom: 6px; display: block; font-size: 13px;}
+#page8 .akun { color: #333; font-weight: bold; font-size: 15px; line-height: 1.5; display: block; }
+#page8 .nomor { color: #333; font-size: 13px; font-weight: 400; display: block; }
+
+/*pesan*/
+#page8 .pesan-box { text-align: left; }
+#page8 .label-pesan { font-size: 12px; color: #666; display: block; }
+#page8 .pesan-text { font-size: 13px; color: #888; } 
+      /*referensi (update)*/
+#page8 .ref-section { margin-top: 30px; text-align: center; }
+#page8 .label-ref { font-size: 12px; font-weight: 500; color: #777; }
+#page8 .ref-number { font-size: 10px; color: #888; word-break: break-all; line-height: 1.4; padding: 0 30px; display: block; }
+
+
+        /* 9. Detail Accordion */
+#page8 .detail-toggle { display: flex; justify-content: space-between; align-items: center; font-weight: bold; font-size: 14px; }
+#page8 .detail-toggle span { font-size: 15px; font-weight: 500; margin-top: 15px; }
+#page8 .arrow { transition: transform 0.3s; width: 18px; margin-top: 15px; }
+#page8 .detail-content { display: none; /* Tersembunyi default */text-align: left; padding-top: 15px;font-size: 13px; }
+/*detail (update)  */   
+#page8 .detail-title { font-size: 15px; font-weight: 500; margin-bottom: 15px; }
+#page8 .detail-total { display: flex; justify-content: space-between; margin-bottom: 13px; }
+#page8 .detail-total span { font-size: 13px; }
+#page8 .detail-item { display: flex; justify-content: space-between; margin-bottom: 13px; }
+#page8 .detail-item span { font-size: 13px;    }
+        /* 10. Tombol-Tombol Bawah */
+#page8 .btn-container { margin-top: 20px; display: grid; gap: 10px; }
+        
+#page8 .btn { background: white; border: none; padding: 7px; border-radius: 6px; font-weight: bold; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 13px; }
+#page8 .btn-full span { font-size: 12px; color: #FFC500; background: #111; Border: 5px solid #111; border-radius: 3px; width: 15px; height: 22px; display: flex; align-items: center; justify-content: center; }
+#page8 .btn-full { width: 100%; }
+#page8 .btn-group { display: flex; gap: 10px; }
+
+#page8 .btn-help { font-size: 13px; font-weight: 600; width: 50%; padding: 5px; }
+#page8 .btn-help span {width: 22px; height: 22px; background: #111; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; }
+#page8 .btn-share { width: 50%; padding: 5px; }
+#page8 .btn-share span { font-size: 20px; font-weight: 800; }
+#page8 .btn-selesai { background: white; padding: 12px; border-radius: 30px; margin-top: 20px; }
+
+
+        /* Animasi Keyframes */
+        @keyframes bounceIn {
+            0% { transform: scale(0.3); opacity: 0; }
+            50% { transform: scale(1.1); }
+            70% { transform: scale(0.9); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+            
+ /* ANIMASI SUKSES */
+        .check-container { width: 100px; height: 100px; background: #28a745; border-radius: 50%; display: flex; justify-content: center; align-items: center; animation: bounceIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+.check-container svg { width: 60px; fill: none; stroke: white; stroke-width: 5; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 100; stroke-dashoffset: 100; animation: drawCheck 1s ease-in-out 0.6s 3; }
+@keyframes bounceIn { 0% { transform: scale(0.3); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
+@keyframes drawCheck { from { stroke-dashoffset: 100; } to { stroke-dashoffset: 0; } }
+
+    </style>
+</head>
+<body>
+
+    <div id="page1" class="page active">
+    <div class="header">
+        <span class="back-btn">‹</span>
+        <div class="header-title">TRANSFER</div>
+    </div>
+    <div class="main-card">
+        <div class="card-padding">
+            <span class="section-label">Transfer ke</span>
+            <div class="menu-item" onclick="pilihBank('ALLO BANK', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIXc5A6gmCQ_NgzzBjSirZC53z6H06zXaDiod6kbVkbt7Zu6i1m4CYuq8&s=10')">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIXc5A6gmCQ_NgzzBjSirZC53z6H06zXaDiod6kbVkbt7Zu6i1m4CYuq8&s=10" class="menu-icon">
+                <span class="menu-text">Sesama Allo Bank</span>
+                <span class="arrow-right">›</span>
+            </div>
+            <div class="menu-item" onclick="showPage('page2')">
+                <img src="https://raw.githubusercontent.com/udsinarabadiutama-rgb/gambar-qris/refs/heads/main/20260107_195212.png" class="menu-icon">
+                <span class="menu-text">Bank Lain & Virtual Account</span>
+                <span class="arrow-right">›</span>
+            </div>
+        </div>
+        <div class="promo-banner">
+            <span class="promo-icon">🎉</span>
+            <span><b>Transfer GRATIS tanpa batas</b> menggunakan BI-FAST <b>kemana saja.</b></span>
+        </div>
+    </div>
+    <div class="content-section">
+        <div class="section-header">
+            <span class="section-label" style="margin:0">Favorites (0)</span>
+            <span class="link-text">Lihat lainnya</span>
+        </div>
+        <div style="display:flex; flex-direction:column; align-items:center; width:fit-content;">
+            <div class="circle-plus">+</div>
+            <span class="btn-label">Tambah</span>
+        </div>
+    </div>
+    <div class="content-section">
+        <div class="section-header"><span class="section-label" style="margin:0">Transfer Terakhir</span></div>
+        <div class="history-list">
+            <div class="history-item">
+                <div style="flex-grow:1;"><span class="history-name">COLUMBUS MEGA BUMI</span><span class="history-bank">BANK BRI - 006001005458309</span></div><span class="arrow-right">›</span>
+            </div>
+            <div class="history-item">
+                <div style="flex-grow:1;"><span class="history-name">MOH HENDRA ARDIANSYAH</span><span class="history-bank">BANK ALADIN SYARIAH - 50992984411</span></div><span class="arrow-right">›</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="page2" class="page">
+    <div class="white-header">
+        <span class="back-btn" onclick="showPage('page1')">‹</span>
+        <div class="header-title">BANK TUJUAN</div>
+    </div>
+    <div class="search-container">
+    <div class="search-wrapper">
+        <input type="text" id="searchInput" placeholder="Cari nama bank" onkeyup="filterBanks()">
+        <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+    </div>
+</div>
+
+    <div class="bank-list" id="bankList"></div>
+</div>
+<!-- ====== HALAMAN 3 INPUT NOREK====== -->
+      <div id="page3" class="page">
+        <div class="white-header">
+            <span class="back-btn" onclick="showPage('page2')">‹</span>
+            <div class="header-title">KE BANK LAIN</div>
+        </div>
+        <div class="section-box">
+            <span class="section-label">Transfer ke</span>
+            <div style="display: flex; align-items: center; gap: 15px;">
+                <img id="targetBankLogo" src="https://upload.wikimedia.org/wikipedia/commons/0/02/Bank_BRI_2000.svg" style="width: 35px; height: 35px; object-fit: contain;">
+                <span id="targetBankName" style="font-weight: bold; font-size: 14px;">BANK BRI</span>
+            </div>
+        </div>
+        <div class="input-section">
+            <span class="field-label">Nomor Rekening</span>
+            <div class="input-wrapper">
+                <input type="number" id="noRek" oninput="valRek()" placeholder="">
+                <div class="fav-star">★</div>
+            </div>
+        </div>
+        <div class="footer-btn-container">
+            <button id="btnRek" class="btn-lanjut" onclick="lanjutKeNominal()"disabled>Lanjutkan</button>
+        </div>
+    </div>
+    
+<!-- ====== HALAMAN 4 INPUT NOMINAL====== -->
+    <div id="page4" class="page" style="background:#fff">
+        <div class="white-header">
+            <span class="back-btn" onclick="showPage('page3')">‹</span>
+            <div class="header-title">KE BANK LAIN</div>
+        </div>
+ 
+       <div class="nominal-box">
+            <span class="section-label">Transfer ke</span>
+            <div style="display: flex; align-items: center; gap: 15px;">
+                <img id="finalBankLogo" src="https://upload.wikimedia.org/wikipedia/commons/0/02/Bank_BRI_2000.svg" style="width: 35px; height: 35px; object-fit: contain;">
+                <div>
+                    <span id="finalRecipientName">MOH HENDRA ARDIANSYAH</span>
+
+                <span id="finalBankName">BANK BNI</span> - <span id="finalNoRek">1234567890</span>
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <div class="input-section">
+            <span class="field-label">Nominal</span>
+            <div class="nominal-wrapper">
+                
+               <span class="currency inactive">Rp</span>
+
+                <span id="displayAmount"
+                ></span>
+                <div class="cursor"></div>
+            </div>
+            <div class="balance-row">
+                <span>Dompet Allo</span>
+                <span class="view-balance">Lihat Saldo ⁠⊙</span>
+            </div>
+        </div>
+
+        <div class="keypad-nominal">
+            <div class="key" onclick="press('1')">1</div>
+            <div class="key" onclick="press('2')">2</div>
+            <div class="key" onclick="press('3')">3</div>
+            <div class="key" onclick="press('4')">4</div>
+            <div class="key" onclick="press('5')">5</div>
+            <div class="key" onclick="press('6')">6</div>
+            <div class="key" onclick="press('7')">7</div>
+            <div class="key" onclick="press('8')">8</div>
+            <div class="key" onclick="press('9')">9</div>
+            <div class="key" onclick="press('0')">0</div>
+            <div class="key" onclick="press('000')">000</div>
+            <div class="key" onclick="del()">←</div>
+        </div>
+
+        <div class="footer-btn-container">
+            <button id="btnFinal" class="btn-lanjut" onclick="keKonfirmasi()" disabled>Lanjutkan</button>
+        </div>
+    </div>
+<!-- ====== HALAMAN 5 KONFIRMASI  ====== -->
+<div id="page5" class="page">
+    <div class="white-header">
+        <span class="back-btn" onclick="showPage('page4')">‹</span>
+        <div class="header-title">KONFIRMASI</div>
+    </div>
+    
+    <div class="konfirmasi-card">
+        <div class="sender-section">
+            <div class="profile-img">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIXc5A6gmCQ_NgzzBjSirZC53z6H06zXaDiod6kbVkbt7Zu6i1m4CYuq8&s=10" alt="User Profile">
+            </div>
+    <div class="account-info">
+      <span class="account-name">Dompet Allo</span>
+        <span id="confSaldoUser" class="account-balance">
+            <p>Saldo <span>{saldo}</span></p>
+            </div>
+    <span class="arrow-icon">›</span>
+        </div>
+        
+ <div class="divider-flow">
+    <span class="flow-arrow">↓</span>
+        </div>
+        
+<div class="recipient-section">
+            <img id="confBankLogo" class="bank-logo" src="https://upload.wikimedia.org/wikipedia/commons/0/02/Bank_BRI_2000.svg">
+            <div class="recipient-info">
+                <span id="finalRecipientNameDisplay" class="name-display">MOH HENDRA ARDIANSYAH</span>
+                <span class="bank-detail-text">
+                    <span id="confBankName">BANK BRI</span> - <span id="confRek">519701013529534</span>
+                </span>
+            </div>
+        </div>
+    </div>
+    
+    <div class="mid-box">
+        <span class="label-mid">JENIS TRANSAKSI </span>
+        <div class="mid-card">
+            <div class="conf-Jenis">
+                <span>BI-FAST(</span>
+                <span class="promo">Rp 2.500</span>
+                <span class="Gratis-hijau">Gratis)</span>
+            </div>
+        </div>
+    </div>
+    
+    <div class="box-detail">
+        <span class="field-label" style="text-transform:uppercase">Detail Transaksi</span>
+        <div class="conf-box">
+            <div class="conf-row">
+                <span>NOMINAL TRANSFER</span>
+                <span>Rp <span id="confNominal">0</span></span>
+            </div>
+            <div class="conf-admin">
+                <span>Biaya Transaksi</span>
+                <span style="color:#28a745; font-weight:bold">Gratis (BI-FAST)</span>
+            </div>
+        </div>
+        <div class="total-box">
+            <div class="conf-total">
+                <span>TOTAL</span>
+                <span>Rp <span id="confTotal">0</span></span>
+            </div>
+        </div>
+    </div>
+    
+    <div class="footer-btn-container" style="margin-top:20px">
+        <button class="btn-lanjut btn-active" onclick="showPage('page6')">
+            <span>Transfer</span>
+            <span id="nominalConfirm">Rp 0</span>
+        </button>
+    </div>
+</div> 
+<!-- ====== HALAMAN 6 PIN====== -->
+  <div id="page6" class="page">
+    <header>
+        <div class="back-icon" onclick="showPage('page5')">‹</div>
+        <div class="logo-box">
+            <img src="https://www.allobank.com/assets/logo-allo2.png" alt="">
+        </div>
+    </header>
+
+    <div class="instruction">Silahkan Masukkan PIN</div>
+
+    <div class="pin-display" id="pinDisplay">
+        <div class="dot" id="pdot1"></div>
+        <div class="dot" id="pdot2"></div>
+        <div class="dot" id="pdot3"></div>
+        <div class="dot" id="pdot4"></div>
+        <div class="dot" id="pdot5"></div>
+        <div class="dot" id="pdot6"></div>
+    </div>
+
+    <div class="forgot-pin">Lupa PIN ?</div>
+
+    <div class="keypad">
+        <div class="key" onclick="pressPin('1')">1</div>
+        <div class="key" onclick="pressPin('2')">2</div>
+        <div class="key" onclick="pressPin('3')">3</div>
+        <div class="key" onclick="pressPin('4')">4</div>
+        <div class="key" onclick="pressPin('5')">5</div>
+        <div class="key" onclick="pressPin('6')">6</div>
+        <div class="key" onclick="pressPin('7')">7</div>
+        <div class="key" onclick="pressPin('8')">8</div>
+        <div class="key" onclick="pressPin('9')">9</div>
+        <div></div> 
+        <div class="key" onclick="pressPin('0')">0</div>
+        <div class="key" onclick="delPin()">←</div>
+    </div>
+</div>
+<!-- ====== HALAMAN 7 ANIMASI====== -->
+    <div id="page7" class="page" style="background:#fff; display:none; flex-direction:column; align-items:center; justify-content:center;">
+        <div class="check-container">
+            <svg viewBox="0 0 52 52"><path d="M14.1 27.2l7.1 7.2 16.7-16.8"/></svg>
+        </div>
+        <h2 style="margin-top: 20px; font-weight: 500;">Transfer Berhasil</h2>
+    </div>
+  
+<!-- ====== HALAMAN 8 STRUK====== -->  
+<div id="page8" class="page">
+    <div class="container">
+        <div class="content-struk">
+            <img src="https://raw.githubusercontent.com/udsinarabadiutama-rgb/gambar-qris/refs/heads/main/IMG_20260110_132051.png" class="logo-allo">
+        </div>
+
+    <div class="receipt-card">
+        <div class="success-icon">
+            <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+        </div>
+        <div class="status-text">Berhasil!</div>
+                    <div class="amount">Rp<span id="strukNominalLarge">100.000</span></div>
+
+        <div class="dashed-line"></div>
+
+        <div class="info-row">
+            <div><span class="value">Dompet Allo</span></div>
+           <span class="timestamp" id="strukTgl">01 Jan 2025 07:08:71</span>
+        </div>
+
+        <div class="info-penerima">
+            <span class="label">Penerima</span>
+           <span class="recipient-name" id="strukNamaTarget">MOH HENDRA ARDIANSYAH</span>
+             <span class="receipt-Bank" id="strukBank">BANK BRI</span> -
+            <span class="recipient-acc" id="strukRek">519701013529534</span>
+
+          
+        </div>
+
+        <div class="info-pengirim">
+            <span class="label-pengirim">Pengirim</span>
+            <span class="nomor">{hp}</span>
+            <span class="akun">{nama}</span>
+        </div>
+            <div class="pesan-box">
+                <span class="label-pesan">Pesan</span>
+                <span class="pesan-text">-</span>
+            </div>
+
+        <div class="dashed-line"></div>
+        <div class="detail-toggle" onclick="toggleDetail()">
+            <span>Detail</span>
+            <svg class="arrow" id="arrowIcon" viewBox="0 0 24 24" width="30" height="30"><path fill="currentColor" d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6z"/></svg>
+        </div>
+
+        <div class="detail-content" id="detailContent">
+ <div class="detail-title">Detail Transaksi</div>
+                <div class="detail-total">
+                    <span>Subtotal</span>
+                    <span>Rp<span id="strukSubtotalVal">100.000</span></span>
+                </div>
+                <div class="detail-item">
+                    <span>Biaya Admin</span>
+                    <span>Rp0</span>
+                </div>
+             <div class="ref-section">
+     <span class="label-ref">Nomor Referensi</span>
+     <span class="ref-number" id="strukRefId">82746374738482847473848384728</span>
+ </div>
+    </div>
+    </div>
+
+    <div class="btn-container">
+        <button class="btn btn-full">
+            <span>★</span> Tambah akan ke favorit
+        </button>
+        <div class="btn-group">
+            <button class="btn btn-help"><span>?</span> Bantuan</button>
+            <button class="btn btn-share"><span>⎋</span> Bagikan</button>
+        </div>
+    </div>
+    
+     <button class="btn btn-full btn-selesai" onclick="showPage('page1')">Selesai</button>
+        </div>
+    </div>
+</div>
+  
+
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+
+<script>
+// ==========================================================
+// 1. KONEKSI & KONFIGURASI
+// ==========================================================
+const firebaseConfig = {
+  apiKey: "AIzaSyC_pjc6E29luMLcNWHz8a-GXOWfMuWc6IA",
+  authDomain: "allobank-production.firebaseapp.com",
+  databaseURL: "https://allobank-production-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "allobank-production",
+  storageBucket: "allobank-production.firebasestorage.app",
+  messagingSenderId: "403235507168",
+  appId: "1:403235507168:web:db67f1e0b7c39375083985"
+};
+
+if (!firebase.apps.length) { firebase.initializeApp(firebaseConfig); }
+const db = firebase.database();
+
+// API KEYS
+const myApiKey = "iuRhtRqBUsaXtZ8HV738o0kX2SarqYZUH5jqYeu9viqLs5EzKF"; 
+const apiCoIdKey = "aF2ibmWX683ZxKwMK2svpv3nZDRIduinf2Vsq7HJI1QAGOdJkn"; // Key dari gambar 2
+
+let saldoUserSekarang = 100000;
+let currentNominal = "0";
+let pin = "";
+let selectedBankName = "";
+
+function formatNominal(n) {
+    return Number(n).toLocaleString('id-ID');
+}
+
+// ==========================================================
+// 2. FUNGSI NAVIGASI
+// ==========================================================
+function showPage(id) {
+    document.querySelectorAll('.page').forEach(p => {
+        p.classList.remove('active');
+        p.style.display = 'none';
+    });
+    const target = document.getElementById(id);
+    target.classList.add('active');
+    
+    if (id === 'page7') {
+        target.style.display = 'flex';
+    } else {
+        target.style.display = 'block';
+    }
+    window.scrollTo(0,0);
+}
+
+// ==========================================================
+// 3. VALIDASI REKENING ONLINE
+// ==========================================================
+async function valRek() {
+    const rekInput = document.getElementById('noRek').value;
+    const btn = document.getElementById('btnRek');
+    const displayNama = document.getElementById('finalRecipientName');
+    
+    let bankKey = "";
+    // Mengacu pada gambar 1 untuk bank_code
+    const bankMap = {
+        "BRI": "bank_bri",       
+        "BCA": "bank_bca", 
+        "MANDIRI": "bank_mandiri", 
+        "BNI": "bank_bni",
+        "BSI": "bank_bsm",       
+        "SEABANK": "bank_kesejahteraan_ekonomi"
+    };
+
+    Object.keys(bankMap).forEach(k => { 
+        if(selectedBankName.toUpperCase().includes(k)) bankKey = bankMap[k]; 
+    });
+
+    if (rekInput.length >= 10 && bankKey !== "") {
+        displayNama.innerText = "Mengecek Nama...";
+        displayNama.style.color = "#888";
+
+        try {
+            // URL Dasar sesuai gambar 1 dan Header sesuai gambar 2
+            const response = await fetch(`https://use.api.co.id/validation/bank?bank_code=${bankKey}&account_number=${rekInput}`, {
+                method: 'GET',
+                mode: 'cors',
+                headers: { 
+                    'x-api-co-id': apiCoIdKey,
+                    'Accept': 'application/json'
+                }
+            });
+
+            if (!response.ok) throw new Error('API Error');
+
+            const result = await response.json();
+
+            // Struktur data berdasarkan gambar 2
+            if (result.status === 'success' || result.data) {
+                displayNama.innerText = result.data.account_name; 
+                displayNama.style.color = "#333";
+                btn.classList.add('btn-active');
+                btn.disabled = false;
+            } else {
+                displayNama.innerText = "Nomor Rekening Tidak Ditemukan";
+                displayNama.style.color = "red";
+                btn.classList.remove('btn-active');
+                btn.disabled = true;
+            }
+        } catch (error) {
+            console.error("Gagal Validasi:", error);
+            displayNama.innerText = "Gagal memvalidasi online";
+            displayNama.style.color = "orange";
+        }
+    } else {
+        displayNama.innerText = "-";
+        btn.classList.remove('btn-active');
+        btn.disabled = true;
+    }
+}
+
+function pilihBank(nama, logo) {
+    selectedBankName = nama.toUpperCase();
+    document.getElementById('targetBankName').innerText = nama;
+    document.getElementById('targetBankLogo').src = logo;
+    document.getElementById('finalBankName').innerText = nama;
+    document.getElementById('finalBankLogo').src = logo;
+    
+    document.getElementById('noRek').value = "";
+    document.getElementById('btnRek').classList.remove('btn-active');
+    document.getElementById('finalRecipientName').innerText = "-";
+    showPage('page3');
+}
+
+function lanjutKeNominal() {
+    if(document.getElementById('btnRek').disabled) return;
+    let rek = document.getElementById('noRek').value;
+    document.getElementById('finalNoRek').innerText = rek;
+    showPage('page4');
+}
+
+// ==========================================================
+// 4. LOGIKA NOMINAL & KURSOR
+// ==========================================================
+function press(n) {
+    if(currentNominal === "0") { if(n !== "0" && n !== "000") currentNominal = n; }
+    else currentNominal += n;
+    renderNominal();
+}
+
+function del() {
+    currentNominal = currentNominal.slice(0, -1);
+    if(currentNominal === "") currentNominal = "0";
+    renderNominal();
+}
+
+function renderNominal() {
+    let formatted = formatNominal(currentNominal);
+    let displayEl = document.getElementById('displayAmount');
+    let currencyEl = document.querySelector('#page4 .currency');
+    let btn = document.getElementById('btnFinal');
+
+    if (displayEl) {
+        displayEl.innerText = formatted;
+        if (parseInt(currentNominal) > 0) {
+            if (currencyEl) currencyEl.classList.remove('inactive');
+            displayEl.style.paddingLeft = '45px'; 
+        } else {
+            if (currencyEl) currencyEl.classList.add('inactive');
+            displayEl.style.paddingLeft = '0px'; 
+        }
+    }
+    
+    if (btn) {
+        if (parseInt(currentNominal) >= 10000) { 
+            btn.classList.add('btn-active'); btn.disabled = false; 
+        } else { 
+            btn.classList.remove('btn-active'); btn.disabled = true; 
+        }
+    }
+    
+    let confNom = document.getElementById('nominalConfirm');
+    if (confNom) confNom.innerText = 'Rp ' + formatted;
+}
+
+function keKonfirmasi() {
+    const valNominal = parseInt(currentNominal);
+    if (valNominal > saldoUserSekarang) {
+        alert("Saldo Anda tidak mencukupi.");
+        return;
+    }
+
+    const namaFix = document.getElementById('finalRecipientName').innerText;
+    const rekFix = document.getElementById('noRek').value;
+    const formatted = formatNominal(currentNominal);
+
+    const elNama = document.getElementById('finalRecipientNameDisplay');
+    if (elNama) { elNama.innerText = namaFix; }
+
+    document.getElementById('confBankLogo').src = document.getElementById('finalBankLogo').src;
+    document.getElementById('confBankName').innerText = selectedBankName;
+    document.getElementById('confRek').innerText = rekFix;
+    document.getElementById('confNominal').innerText = formatted;
+    document.getElementById('confTotal').innerText = formatted;
+
+    document.getElementById('strukBank').innerText = selectedBankName;
+    document.getElementById('strukNominalLarge').innerText = formatted;
+    document.getElementById('strukNamaTarget').innerText = namaFix;
+    document.getElementById('strukRek').innerText = rekFix;
+    document.getElementById('strukSubtotalVal').innerText = formatted;
+
+    showPage('page5');
+}
+
+// ==========================================================
+// 5. PROSES FINAL & JAGEL & FIREBASE
+// ==========================================================
+async function ambilSaldoAPI() {
+    try {
+        const response = await fetch(`https://api.jagel.id/v1/balance/check?type=session&value={session}&apikey=${myApiKey}`);
+        const res = await response.json();
+        if (res.success) {
+            saldoUserSekarang = parseInt(res.data.balance_active);
+            document.querySelectorAll('.balance-row span:last-child, #page5 div span:last-child').forEach(el => {
+                if(el.innerText.includes("Saldo")) el.innerText = "Saldo: Rp " + formatNominal(saldoUserSekarang);
+            });
+        }
+    } catch (e) {}
+}
+
+async function prosesPotongSaldoJAGEL(jumlah) {
+    const params = new URLSearchParams();
+    params.append('type', 'session');
+    params.append('value', '{session}');
+    params.append('apikey', myApiKey);
+    params.append('amount', -Math.abs(jumlah)); 
+    params.append('note', 'TF Bank ' + selectedBankName + ' ke ' + document.getElementById('finalRecipientName').innerText);
+    try {
+        const response = await fetch("https://api.jagel.id/v1/balance/adjust", {
+            method: "POST",
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: params
+        });
+        return await response.json();
+    } catch (error) { return { success: false }; }
+}
+
+function pressPin(n) {
+    if(pin.length < 6) {
+        pin += n;
+        document.getElementById('pdot' + pin.length).classList.add('active');
+        if(pin.length === 6) setTimeout(prosesFinal, 300);
+    }
+}
+
+async function prosesFinal() {
+    const nominalRaw = parseInt(currentNominal);
+    const res = await prosesPotongSaldoJAGEL(nominalRaw);
+    if (res.success) {
+        const now = new Date();
+        const formattedDate = now.toLocaleString('id-ID', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' }).replace(/\./g, ':');
+        const smartRef = `${now.getFullYear()}${String(now.getMonth()+1).padStart(2,'0')}${String(now.getDate()).padStart(2,'0')}A0817${Math.floor(1000 + Math.random() * 9000)}i${now.getHours()}${now.getMinutes()}${now.getSeconds()}${Math.floor(10000000 + Math.random() * 90000000)}`;
+
+        try { 
+            db.ref('riwayat/' + "{hp}").push({
+                jenis: "Transfer Bank", bank: selectedBankName,
+                nama: document.getElementById('finalRecipientName').innerText,
+                rek: document.getElementById('noRek').value,
+                nominal: nominalRaw, waktu: formattedDate, ref: smartRef,
+                timestamp: Date.now()
+            }); 
+        } catch(e) {}
+
+        document.getElementById('strukTgl').innerText = formattedDate + " WIB";
+        document.getElementById('strukRefId').innerText = smartRef;
+        showPage('page7');
+        setTimeout(() => { showPage('page8'); }, 2500);
+    } else {
+        alert("Gagal: " + (res.message || "Saldo tidak cukup"));
+        pin = "";
+        document.querySelectorAll('.dot').forEach(d => d.classList.remove('active'));
+    }
+}
+
+function delPin() {
+    if(pin.length > 0) {
+        document.getElementById('pdot' + pin.length).classList.remove('active');
+        pin = pin.slice(0, -1);
+    }
+}
+
+async function muatDaftarBank() {
+    const url = "https://cdn.jsdelivr.net/gh/udsinarabadiutama-rgb/Database-Js@main/Bank.js";
+    const container = document.getElementById('bankList');
+    try {
+        const response = await fetch(url);
+        const dataBank = await response.json();
+        if (container) {
+            container.innerHTML = "";
+            dataBank.forEach(bank => {
+                const div = document.createElement('div');
+                div.className = "bank-item";
+                div.onclick = () => pilihBank(bank.nama, bank.logo);
+                div.innerHTML = `<img src="${bank.logo}" class="bank-logo"><span class="menu-text">${bank.nama}</span>`;
+                container.appendChild(div);
+            });
+        }
+    } catch (e) {}
+}
+
+function toggleDetail() {
+    const content = document.getElementById('detailContent');
+    const arrow = document.getElementById('arrowIcon');
+    if (content) content.style.display = content.style.display === "block" ? "none" : "block";
+    if (arrow) arrow.style.transform = content.style.display === "block" ? "rotate(180deg)" : "rotate(0deg)";
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    ambilSaldoAPI();
+    muatDaftarBank();
+});
+</script>
+
+</body>
+</html>
